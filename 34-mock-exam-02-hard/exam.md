@@ -36,7 +36,7 @@ Start your timer now.
 
 **Context:** Namespace `exam-02`. Cluster nodes: `kind-control-plane`, `kind-worker`, `kind-worker2`.
 
-**Task:** Create a deployment named `frontend` in `exam-02` using image `nginx:stable` with 3 replicas. Create a PodDisruptionBudget named `frontend-pdb` in `exam-02` ensuring at least 2 pods are always available. Cordon `kind-worker2`. Drain `kind-worker` (use `--ignore-daemonsets --delete-emptydir-data`; pods should reschedule on `kind-worker2`). Verify all 3 pods end up Running. Uncordon both `kind-worker` and `kind-worker2`.
+**Task:** Create a deployment named `frontend` in `exam-02` using image `nginx:stable` with 3 replicas. Create a PodDisruptionBudget named `frontend-pdb` in `exam-02` ensuring at least 2 pods are always available. Drain `kind-worker` (use `--ignore-daemonsets --delete-emptydir-data`). Verify that all 3 pods reschedule onto `kind-worker2` and are Running. Uncordon `kind-worker`.
 
 ---
 

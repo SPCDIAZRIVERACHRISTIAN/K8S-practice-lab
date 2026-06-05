@@ -37,7 +37,7 @@ kubectl config get-contexts
 ## 3. Get the cluster endpoint
 
 ```bash
-kubectl cluster-info --context kind-my-first-cluster
+kubectl cluster-info --context kind-kind
 ```
 
 > Copy the API server URL from the output. Open it in a browser. What does the response say? Write it down. You will explain it in `notes.md`.
@@ -123,7 +123,7 @@ docker ps
 ## 10. Delete the cluster and observe what happens to kubectl
 
 ```bash
-kind delete cluster --name my-first-cluster
+kind delete cluster --name kind
 ```
 
 ```bash

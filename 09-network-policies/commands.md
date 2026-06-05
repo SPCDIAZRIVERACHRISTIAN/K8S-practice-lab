@@ -1,6 +1,6 @@
 # 09 — Commands
 
-This lab uses the `netpol-lab` cluster, not `my-first-cluster`. Confirm your context before running any command.
+This lab uses the `netpol-lab` cluster, not the main `kind` cluster. Confirm your context before running any command.
 
 ---
 
@@ -159,5 +159,5 @@ kubectl exec -it frontend-pod -n lab-09-netpol -- wget -qO- --timeout=3 backend
 After cleanup, switch back to your main cluster:
 
 ```bash
-kubectl config use-context kind-my-first-cluster
+kubectl config use-context kind-kind
 ```

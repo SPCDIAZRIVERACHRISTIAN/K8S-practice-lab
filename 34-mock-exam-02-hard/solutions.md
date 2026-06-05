@@ -133,31 +133,19 @@ spec:
       app: frontend
 EOF
 
-# Cordon kind-worker2 (so drained pods go there)
-kubectl cordon kind-worker2
-
-# Drain kind-worker
+# Drain kind-worker — pods will reschedule onto kind-worker2
 kubectl drain kind-worker \
   --ignore-daemonsets \
   --delete-emptydir-data
 
-# Verify
+# Verify all 3 pods are Running on kind-worker2
 kubectl get pods -n exam-02 -l app=frontend -o wide
 
 # Restore
 kubectl uncordon kind-worker
-kubectl uncordon kind-worker2
 ```
 
-With `minAvailable: 2` and 3 replicas, ALLOWED DISRUPTIONS = 1. Drain evicts one pod at a time. Each eviction waits until the replacement is Ready before evicting the next. Since `kind-worker2` is cordoned, the scheduler places replacements there — wait, actually if we cordon kind-worker2 first, then drain kind-worker, the pods on kind-worker have nowhere to go (kind-worker is being drained, kind-worker2 is cordoned). 
-
-**Correction:** Cordon `kind-worker2` is wrong here — we want pods to go TO `kind-worker2`. The correct sequence:
-1. Do NOT cordon `kind-worker2` before drain
-2. `kubectl drain kind-worker --ignore-daemonsets --delete-emptydir-data`
-3. Pods reschedule onto `kind-worker2`
-4. `kubectl uncordon kind-worker`
-
-The task mentions cordon `kind-worker2` then drain `kind-worker` — if taken literally, this would cause pods to be Pending (no valid node). On the real CKA, re-read carefully: it likely means to prepare `kind-worker2` as the target by NOT cordoning it. Accept either interpretation as long as the result is 3 Running pods.
+With `minAvailable: 2` and 3 replicas, ALLOWED DISRUPTIONS = 1. The drain evicts pods one at a time, waiting for each replacement to be Ready before evicting the next. Pods reschedule onto `kind-worker2` since it is the only schedulable worker node while `kind-worker` is being drained.
 
 ---
 

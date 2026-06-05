@@ -17,10 +17,10 @@
 **What you will build:**
 
 ```
-my-first-cluster
-├── control-plane node    (Docker container)
-├── worker node           (Docker container)
-└── worker node           (Docker container)
+kind  (default cluster name)
+├── kind-control-plane    (Docker container, ports 80+443 mapped to host)
+├── kind-worker           (Docker container)
+└── kind-worker2          (Docker container)
 ```
 
 Inside the control-plane node, kind runs the Kubernetes control plane components as static pods:
@@ -84,8 +84,10 @@ Open `solutions.md` after completing your notes to verify your observations.
 Or manually:
 
 ```bash
-kind delete cluster --name my-first-cluster
+kind delete cluster --name kind
 ```
+
+> **Note:** `kind-config.yaml` does not set a `name:` field, so kind defaults the cluster name to `kind`. The kubectl context will be `kind-kind`. Node names will be `kind-control-plane`, `kind-worker`, and `kind-worker2`. If you already created the cluster under a different name, delete it first and recreate it with this config so that the extraPortMappings (needed for lab 08 Ingress) take effect.
 
 ---
 

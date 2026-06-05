@@ -32,10 +32,10 @@ The control-plane node in kind has a taint: `node-role.kubernetes.io/control-pla
 ## Expected output: kubectl get nodes
 
 ```
-NAME                             STATUS   ROLES           AGE   VERSION
-my-first-cluster-control-plane   Ready    control-plane   Xm    v1.X.X
-my-first-cluster-worker          Ready    <none>          Xm    v1.X.X
-my-first-cluster-worker2         Ready    <none>          Xm    v1.X.X
+NAME                 STATUS   ROLES           AGE   VERSION
+kind-control-plane   Ready    control-plane   Xm    v1.X.X
+kind-worker          Ready    <none>          Xm    v1.X.X
+kind-worker2         Ready    <none>          Xm    v1.X.X
 ```
 
 Workers show `<none>` for ROLES because the `worker` role label is not set by default in kind.

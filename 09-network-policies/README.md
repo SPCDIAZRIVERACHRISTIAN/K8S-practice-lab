@@ -17,9 +17,9 @@
 
 **Important — This lab uses its own cluster**
 
-This lab does NOT use the shared `my-first-cluster`. It creates a separate kind cluster named `netpol-lab` with Calico as the CNI. This is required because kind's default CNI (kindnet) does not enforce NetworkPolicy.
+This lab does NOT use the shared `kind` cluster. It creates a separate kind cluster named `netpol-lab` with Calico as the CNI. This is required because kind's default CNI (kindnet) does not enforce NetworkPolicy.
 
-The cleanup script for this lab deletes only the `netpol-lab` cluster. Your main cluster is not affected.
+The cleanup script for this lab deletes only the `netpol-lab` cluster. Your main `kind` cluster is not affected.
 
 **What you will build:**
 

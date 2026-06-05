@@ -1,4 +1,4 @@
-# CKA Domain Map — Phase 0–2
+# CKA Domain Map — Full Lab Roadmap
 
 This file maps each lab to the CKA exam domains it covers.
 

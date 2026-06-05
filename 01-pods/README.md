@@ -11,7 +11,7 @@
 
 **Prerequisites:**
 - Completed lab 00 — kind cluster is running
-- `kubectl` pointed at `kind-my-first-cluster`
+- `kubectl` pointed at `kind-kind`
 
 **What you will build:**
 

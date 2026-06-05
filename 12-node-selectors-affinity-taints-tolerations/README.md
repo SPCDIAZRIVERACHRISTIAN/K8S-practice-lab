@@ -16,10 +16,10 @@
 **What you will build:**
 
 ```
-my-first-cluster
-├── control-plane node  (tainted: NoSchedule — user pods stay off)
-├── worker-1 node       (labeled: disktype=ssd — target for ssd-pod)
-└── worker-2 node       (tainted: dedicated=special:NoSchedule — repels most pods)
+kind  (cluster name)
+├── kind-control-plane  (tainted: NoSchedule — user pods stay off)
+├── kind-worker         (labeled: disktype=ssd — target for ssd-pod)
+└── kind-worker2        (tainted: dedicated=special:NoSchedule — repels most pods)
 ```
 
 **Files:**

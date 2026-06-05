@@ -55,13 +55,13 @@ kubectl describe ingress lab-ingress -n lab-08-ingress
 
 ## 5. Access the frontend via Ingress
 
-The ingress-nginx controller in kind listens on localhost:80 and localhost:443 (if kind was configured with extraPortMappings). Try:
+The ingress-nginx controller in kind listens on localhost:80 because `00-kind-cluster/kind-config.yaml` includes `extraPortMappings` for ports 80 and 443. Try:
 
 ```bash
 curl http://localhost/
 ```
 
-> Do you get the nginx default page? If not, check if your kind cluster was created with the port mappings required for ingress-nginx.
+> Do you get the nginx default page? If not, your cluster was likely created without the extraPortMappings. Delete the cluster (`kind delete cluster --name kind`) and recreate it with `00-kind-cluster/kind-config.yaml` before continuing.
 
 ---
 
