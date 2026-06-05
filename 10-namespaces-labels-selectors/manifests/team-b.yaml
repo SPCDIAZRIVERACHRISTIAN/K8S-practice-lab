@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: lab-10-team-b
+  labels:
+    team: b
+    tier: frontend
+  annotations:
+    contact: "team-b@example.com"
+    version: "1.0.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      team: b
+  template:
+    metadata:
+      labels:
+        app: frontend
+        team: b
+        tier: frontend
+        env: staging
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable
+        ports:
+        - containerPort: 80

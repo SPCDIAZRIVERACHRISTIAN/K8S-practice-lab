@@ -1,0 +1,8 @@
+apiVersion: lab.example.com/v1
+kind: Widget
+metadata:
+  name: broken-required
+  namespace: lab-21-crds
+spec:
+  message: "I forgot to set color and size"
+  # Missing: color and size — both are required fields

@@ -1,0 +1,17 @@
+# Intentionally broken: references a ConfigMap named 'missing-config' that does not exist.
+# This causes CreateContainerConfigError — the container never starts.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configerror-demo
+  namespace: lab-25-observe
+spec:
+  containers:
+    - name: nginx
+      image: nginx:stable
+      env:
+        - name: APP_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: missing-config
+              key: color

@@ -1,0 +1,8 @@
+apiVersion: lab.example.com/v1
+kind: Widget
+metadata:
+  name: broken-color
+  namespace: lab-21-crds
+spec:
+  color: purple     # invalid — enum only allows red, blue, green
+  size: 50

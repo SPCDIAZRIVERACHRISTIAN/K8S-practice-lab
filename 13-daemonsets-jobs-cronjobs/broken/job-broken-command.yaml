@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: broken-job
+  namespace: lab-13-workloads
+spec:
+  completions: 1
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: worker
+        image: busybox:1.36
+        command: ["sh", "-c", "echo 'Starting...' && exit 1"]   # exits with non-zero — Job fails

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-missing-key
+  namespace: lab-04-config
+spec:
+  containers:
+  - name: app
+    image: busybox:1.36
+    command: ["sh", "-c", "env && sleep 3600"]
+    env:
+    - name: APP_ENV
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: APP_ENV
+    - name: NONEXISTENT_VAR
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: DOES_NOT_EXIST   # this key does not exist in app-config

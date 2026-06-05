@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-unschedulable
+  namespace: lab-11-resources
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    resources:
+      requests:
+        memory: "100Gi"   # no node in the cluster has 100Gi free
+        cpu: "64"

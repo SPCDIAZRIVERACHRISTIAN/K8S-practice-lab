@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-e
+  namespace: speed-32
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-e
+  template:
+    metadata:
+      labels:
+        app: app-e
+    spec:
+      containers:
+      - name: app-e
+        image: nginx:stable
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 9999
+          initialDelaySeconds: 3
+          periodSeconds: 5

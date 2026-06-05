@@ -1,119 +1,105 @@
-# Lab Notes — Answer These After Running the Commands
+# Lab Notes — 00 First Multi-Node Cluster with kind
 
-Fill in your answers after completing the lab. These are not tricks — they are the things you should be able to say out loud without hesitation before moving on.
-
----
-
-**What is the cluster name?**
-
-> my-first-cluster
+Answer each question after running the lab. Write in your own words. Do not copy from solutions.md until you have attempted every question.
 
 ---
 
-**How many nodes exist?**
+## What I Expected
 
-> 3
-
----
-
-**Which node is the control plane?**
-
-> control-plane
+> What did you think a Kubernetes cluster was before this lab?
 
 ---
 
-**Which nodes are workers?**
+## What Actually Happened
 
-> worker1, worker2
-
----
-
-**What command shows all nodes?**
-
-> kubectl get nodes
+> What did kind create? What did the output tell you as it ran?
 
 ---
 
-**What command shows detailed node info?**
+## Commands I Used
 
-> kubectl describe node <node name> and kubectl get nodes -o wide for a detailed list like ls -la
-
----
-
-**What happens when you delete the cluster?**
-
-> (Think about: is the data gone? Can you recreate it? What about kubectl context?)
+> List the commands you ran. Next to each one, write one sentence about what it showed you.
 
 ---
 
-**What did you notice that was different between describing the control-plane node vs a worker node?**
+## Cluster Structure
 
-> It has way more pods than a worker node this is because it depends on kube-system pods to manage the workers control plane sole purpose is to make sure everything is up good and ready to go while workers are tasked with providing the services you tasked them.
+**What is a kind node actually made of at the OS/infrastructure level?**
+
+> Write your answer here.
+
+**What is the role of the control-plane node?**
+
+> Write your answer here.
+
+**What is the role of a worker node?**
+
+> Write your answer here.
 
 ---
 
-**Anything that confused you or that you want to research further?**
+## System Pods
 
-> not now.
+**List the pods you found in `kube-system`. For each one, write what you think it does.**
+
+> Write your answer here.
+
+**On which node do the control-plane component pods run?**
+
+> Write your answer here.
+
+**What is `kube-proxy` and where does it run?**
+
+> Write your answer here.
 
 ---
 
-## To run a cluster in kind use:
+## The API Server URL
 
-```bash
-kind create cluster --config <filename>.yaml
-```
+**What happened when you opened the API server URL in a browser?**
 
-## To get info on kind:
+> Write your answer here.
 
-```bash
-kubectl cluster-info --context <cluster name>
-```
+**Why does that happen? What is the cluster actually protecting?**
 
-- when you type the cluster-info command the command gives you the URL to access your "backend" or so to speak of the cluster. This link will show you forbidden access on your browser because it is not meant to be seen by the browser.
+> Write your answer here.
 
-## Kubernetes API:
+---
 
-- when working with kubernetes api this is just a group of apis that authenticate you as the dev or owner of a cluster and lets you inspect through multiple tools such as kubectl to monitor create or delete clusters, nodes and pods.
+## kubectl Context
 
-## Nodes:
+**What does `kubectl config current-context` tell you?**
 
-- This is a machine inside the kubernetes cluster it could be a VM, physical server, cloud VM or docker container pretending to be a VM (kind)
+> Write your answer here.
 
-- nodes are a group of pods this could be system pods like kube-proxy or etcd and app pods which is where your app lives.
+**After you deleted the cluster, what happened to the kubectl context?**
 
-## Objects:
+> Write your answer here.
 
-- Objects are basically yaml or json files specifying behavior 
-### Example: 
+**Why does kubectl need a context at all?**
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod
-spec:
-  containers:
-    - name: nginx
-      image: nginx
-```
+> Write your answer here.
 
-- You can look at object as a sort of configuration manifest for multiple things like:
+---
 
-Pod
+## Objects or Resources I Touched
 
-Deployment
+> Write your answer here.
 
-Service
+---
 
-ConfigMap
+## What Changed in the Cluster
 
-Secret 
+> Write your answer here.
 
-Namespace 
+---
 
-Node 
+## What This Means
 
-Ingress 
+> In one paragraph: explain what kind is, what it created, and why this is useful for learning Kubernetes.
 
-Job 
+---
+
+## Things I Still Need to Research
+
+> Write your answer here.

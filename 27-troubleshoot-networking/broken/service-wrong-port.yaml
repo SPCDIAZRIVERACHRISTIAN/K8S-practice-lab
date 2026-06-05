@@ -1,0 +1,15 @@
+# Intentionally broken: selector is correct (app: backend) so endpoints are populated,
+# but targetPort is 9090 while nginx listens on 80.
+# Symptom: service has endpoints but connections are refused.
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-port-svc
+  namespace: lab-27-network
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 80
+      targetPort: 9090
+  type: ClusterIP

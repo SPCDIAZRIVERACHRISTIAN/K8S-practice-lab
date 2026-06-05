@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-bad-image
+  namespace: lab-01-pods
+  labels:
+    app: nginx-broken
+spec:
+  containers:
+  - name: nginx
+    image: nginx:doesnotexist
+    ports:
+    - containerPort: 80

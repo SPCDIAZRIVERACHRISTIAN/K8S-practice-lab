@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-wrong-sc
+  namespace: lab-28-storage
+spec:
+  storageClassName: fast-nvme-does-not-exist
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+# Problem: storageClassName references a StorageClass that does not exist.
+# No provisioner can fulfill this request. The PVC stays Pending.
+# Fix: change storageClassName to "standard" (kind's local-path provisioner).

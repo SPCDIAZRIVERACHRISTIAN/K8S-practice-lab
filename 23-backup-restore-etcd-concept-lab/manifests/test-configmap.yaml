@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: etcd-lab-marker
+  namespace: lab-23-etcd
+data:
+  message: "This object was in the cluster when the snapshot was taken"
+  timestamp: "created-before-backup"

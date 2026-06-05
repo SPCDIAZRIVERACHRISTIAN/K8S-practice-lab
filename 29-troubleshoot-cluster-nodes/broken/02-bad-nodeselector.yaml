@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad-selector-pod
+  namespace: lab-29-nodes
+spec:
+  nodeSelector:
+    disktype: nvme-ultra    # no node has this label
+  containers:
+  - name: nginx
+    image: nginx:stable
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+# Problem: nodeSelector requires an exact label match on the node.
+# No node in the kind cluster has label disktype=nvme-ultra.
+# The pod stays Pending with: "no nodes available to schedule pods"
+# Fix option A: remove the nodeSelector
+# Fix option B: add the label to a node:
+#   kubectl label node kind-worker disktype=nvme-ultra

@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+  namespace: lab-04-config
+spec:
+  containers:
+  - name: app
+    image: busybox:1.36
+    command: ["sh", "-c", "env && sleep 3600"]
+    env:
+    - name: APP_ENV
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: APP_ENV
+    - name: APP_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: APP_PORT
+    - name: LOG_LEVEL
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: LOG_LEVEL
+    - name: DB_USER
+      valueFrom:
+        secretKeyRef:
+          name: app-secrets
+          key: DB_USER
+    - name: DB_PASS
+      valueFrom:
+        secretKeyRef:
+          name: app-secrets
+          key: DB_PASS

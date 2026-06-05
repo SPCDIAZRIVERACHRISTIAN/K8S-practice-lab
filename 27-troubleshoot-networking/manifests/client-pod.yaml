@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+  namespace: lab-27-network
+  labels:
+    app: client
+spec:
+  containers:
+    - name: client
+      image: busybox:stable
+      command:
+        - sleep
+        - "3600"

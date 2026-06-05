@@ -1,0 +1,11 @@
+# Intentionally broken: the image tag does not exist in any registry.
+# This causes ErrImagePull then ImagePullBackOff.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: imagepull-demo
+  namespace: lab-25-observe
+spec:
+  containers:
+    - name: nginx
+      image: nginx:version-does-not-exist-99

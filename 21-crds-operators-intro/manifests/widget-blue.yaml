@@ -1,0 +1,8 @@
+apiVersion: lab.example.com/v1
+kind: Widget
+metadata:
+  name: blue-widget
+  namespace: lab-21-crds
+spec:
+  color: blue
+  size: 7

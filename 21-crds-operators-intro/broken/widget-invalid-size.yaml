@@ -1,0 +1,8 @@
+apiVersion: lab.example.com/v1
+kind: Widget
+metadata:
+  name: broken-size
+  namespace: lab-21-crds
+spec:
+  color: green
+  size: 999         # invalid — maximum is 100

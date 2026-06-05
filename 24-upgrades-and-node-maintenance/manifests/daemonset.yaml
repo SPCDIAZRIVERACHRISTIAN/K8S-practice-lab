@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-monitor
+  namespace: lab-24-maintenance
+spec:
+  selector:
+    matchLabels:
+      app: node-monitor
+  template:
+    metadata:
+      labels:
+        app: node-monitor
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: monitor
+        image: busybox:stable
+        command: ["sh", "-c", "while true; do sleep 3600; done"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 16Mi

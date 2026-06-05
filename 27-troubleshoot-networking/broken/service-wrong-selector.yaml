@@ -1,0 +1,15 @@
+# Intentionally broken: selector has a typo — 'backennnd' (three n's) instead of 'backend'.
+# Symptom: kubectl get endpoints backend-svc shows <none>.
+# Traffic sent to this service will never reach any pod.
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+  namespace: lab-27-network
+spec:
+  selector:
+    app: backennnd
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP

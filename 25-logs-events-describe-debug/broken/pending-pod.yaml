@@ -1,0 +1,15 @@
+# Intentionally broken: requests far more CPU and memory than any node can provide.
+# This causes the pod to stay in Pending state — it can never be scheduled.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pending-demo
+  namespace: lab-25-observe
+spec:
+  containers:
+    - name: nginx
+      image: nginx:stable
+      resources:
+        requests:
+          cpu: "500"
+          memory: "999Gi"

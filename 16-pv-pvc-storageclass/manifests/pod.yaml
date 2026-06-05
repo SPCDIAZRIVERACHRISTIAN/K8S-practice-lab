@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: data-pod
+  namespace: lab-16-storage
+spec:
+  containers:
+  - name: writer
+    image: busybox:1.36
+    command: ["sh", "-c", "echo 'persisted data' > /data/test.txt && cat /data/test.txt && sleep 3600"]
+    volumeMounts:
+    - name: persistent-storage
+      mountPath: /data
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: data-pvc

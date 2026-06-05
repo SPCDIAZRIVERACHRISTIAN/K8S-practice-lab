@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: broken-db
+  namespace: lab-28-storage
+spec:
+  serviceName: broken-db-headless
+  replicas: 2
+  selector:
+    matchLabels:
+      app: broken-db
+  template:
+    metadata:
+      labels:
+        app: broken-db
+    spec:
+      containers:
+      - name: db
+        image: nginx:stable
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        volumeMounts:
+        - name: storage
+          mountPath: /var/lib/data
+  volumeClaimTemplates:
+  - metadata:
+      name: storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: premium-ssd-does-not-exist   # does not exist
+      resources:
+        requests:
+          storage: 100Mi
+# Problem: volumeClaimTemplates references a non-existent StorageClass.
+# PVCs are created per-pod but stay Pending. Pods also stay Pending.
+# Fix: delete StatefulSet, recreate with storageClassName: standard
+# NOTE: volumeClaimTemplates is immutable on a running StatefulSet.
+# You cannot patch this field — you must delete and recreate the StatefulSet.

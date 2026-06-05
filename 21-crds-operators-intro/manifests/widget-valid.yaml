@@ -1,0 +1,9 @@
+apiVersion: lab.example.com/v1
+kind: Widget
+metadata:
+  name: my-widget
+  namespace: lab-21-crds
+spec:
+  color: red
+  size: 42
+  message: "Hello from my custom resource"

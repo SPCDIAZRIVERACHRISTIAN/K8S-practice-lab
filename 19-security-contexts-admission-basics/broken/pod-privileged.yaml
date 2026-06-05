@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: privileged-pod
+  namespace: lab-19-security
+spec:
+  containers:
+  - name: app
+    image: nginx:stable
+    securityContext:
+      privileged: true          # explicit privileged escalation — blocked in baseline + restricted
+      allowPrivilegeEscalation: true
+      runAsUser: 0              # root

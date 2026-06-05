@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: lab-20-dev
+
+namePrefix: dev-
+
+resources:
+- ../../base
+
+images:
+- name: nginx
+  newTag: "1.25"
+
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 1
+  target:
+    kind: Deployment
+    name: webapp
+
+commonLabels:
+  env: dev

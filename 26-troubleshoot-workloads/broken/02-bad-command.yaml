@@ -1,0 +1,26 @@
+# Intentionally broken: 'cat /etc/nonexistent/config.json' will fail with exit code 1.
+# Symptom: pods will show CrashLoopBackOff.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-02
+  namespace: lab-26-broken
+  labels:
+    app: app-02
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-02
+  template:
+    metadata:
+      labels:
+        app: app-02
+    spec:
+      containers:
+        - name: busybox
+          image: busybox:stable
+          command:
+            - sh
+            - -c
+            - "echo 'Loading config...'; cat /etc/nonexistent/config.json; echo 'done'"

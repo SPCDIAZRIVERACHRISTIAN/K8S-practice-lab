@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-besteffort
+  namespace: lab-11-resources
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    # No resources block = BestEffort QoS
+    # This pod gets no scheduling guarantee and is first evicted under memory pressure

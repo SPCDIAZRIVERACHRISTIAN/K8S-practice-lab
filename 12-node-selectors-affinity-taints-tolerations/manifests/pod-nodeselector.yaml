@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-nodeselector
+  namespace: lab-12-scheduling
+spec:
+  nodeSelector:
+    disktype: ssd   # only schedule on nodes labeled disktype=ssd
+  containers:
+  - name: nginx
+    image: nginx:stable

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: speed-32
+data:
+  MODE: production
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-c
+  namespace: speed-32
+spec:
+  containers:
+  - name: app-c
+    image: nginx:stable
+    env:
+    - name: APP_MODE
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: mode

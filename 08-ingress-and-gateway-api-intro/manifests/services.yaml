@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+  namespace: lab-08-ingress
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+  namespace: lab-08-ingress
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+  - port: 80
+    targetPort: 80

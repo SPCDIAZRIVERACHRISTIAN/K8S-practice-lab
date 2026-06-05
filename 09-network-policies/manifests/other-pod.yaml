@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: other-pod
+  namespace: lab-09-netpol
+  labels:
+    app: other
+spec:
+  containers:
+  - name: other
+    image: busybox:1.36
+    command: ["sh", "-c", "sleep 3600"]

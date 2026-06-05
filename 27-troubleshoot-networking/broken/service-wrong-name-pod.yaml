@@ -1,0 +1,19 @@
+# Intentionally broken: this pod tries to reach http://backend but no service named 'backend'
+# exists in the namespace. The service is named 'backend-svc'.
+# Symptom: DNS lookup for 'backend' fails with NXDOMAIN.
+# The short name 'backend' resolves to backend.lab-27-network.svc.cluster.local — which does not exist.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wrong-dns-client
+  namespace: lab-27-network
+  labels:
+    app: wrong-dns-client
+spec:
+  containers:
+    - name: client
+      image: busybox:stable
+      command:
+        - sh
+        - -c
+        - "while true; do wget -qO- http://backend; sleep 5; done"

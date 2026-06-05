@@ -1,29 +1,57 @@
-# 00 — First Multinode Cluster with kind
+# 00 — First Multi-Node Cluster with kind
 
-**Goal:** Create a local Kubernetes cluster, inspect its nodes, understand the control plane vs workers, and destroy/recreate it cleanly.
+**Goal:** Create a local Kubernetes cluster using kind, inspect its nodes and system pods, understand control plane vs workers, and delete/recreate the cluster cleanly.
 
-Do not deploy apps yet. This lab is only about the cluster itself.
+**What this lab teaches:**
+- What kind is and how it uses Docker containers as cluster nodes
+- The role of the control-plane node vs worker nodes
+- How kubectl uses a context to talk to a specific cluster
+- Where the Kubernetes system pods live and what they do
+- Why the API server URL returns 403 in a browser
 
-**kind documentation:** https://kind.sigs.k8s.io/docs/user/quick-start/
-
----
-
-## What You Will Build
-
-```
-my-first-cluster
-├── control-plane node
-├── worker node
-└── worker node
-```
-
----
-
-## Prerequisites
-
+**Prerequisites:**
 - [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) installed
 - [kubectl](https://kubernetes.io/docs/tasks/tools/) installed
 - Docker running
+
+**What you will build:**
+
+```
+my-first-cluster
+├── control-plane node    (Docker container)
+├── worker node           (Docker container)
+└── worker node           (Docker container)
+```
+
+Inside the control-plane node, kind runs the Kubernetes control plane components as static pods:
+
+```
+kube-apiserver
+kube-controller-manager
+kube-scheduler
+etcd
+coredns
+```
+
+**Files:**
+
+| File | Purpose |
+|------|---------|
+| `kind-config.yaml` | Cluster definition: 1 control-plane + 2 workers |
+| `commands.md` | Ordered commands with observation prompts |
+| `notes.md` | Workbook — answer the questions after running the lab |
+| `solutions.md` | Expected outputs, explanations, common errors |
+| `cleanup.sh` | Deletes the kind cluster |
+
+**Success criteria:**
+- [ ] Create the multi-node cluster from `kind-config.yaml`
+- [ ] List all nodes and identify which is control-plane and which are workers
+- [ ] List all `kube-system` pods and describe what at least 3 of them do
+- [ ] Describe a node and locate its taints, capacity, and conditions
+- [ ] Explain in one sentence why the API server URL returns 403 in a browser
+- [ ] Delete and recreate the cluster without looking anything up
+
+**Estimated difficulty:** Beginner
 
 ---
 
@@ -35,17 +63,19 @@ my-first-cluster
 kind create cluster --config kind-config.yaml
 ```
 
-This reads `kind-config.yaml` which defines 1 control-plane node and 2 worker nodes named `my-first-cluster`.
-
 ### 2. Work through the commands
 
-Open [`commands.md`](commands.md) and run each command in order. Read the output carefully.
+Open `commands.md` and run each command in order. Read the output carefully before moving to the next step.
 
 ### 3. Fill in your notes
 
-Open [`notes.md`](notes.md) and answer every question in your own words before moving on.
+Open `notes.md` and answer each question in your own words before moving on. Do not skip this.
 
-### 4. Clean up
+### 4. Check your understanding
+
+Open `solutions.md` after completing your notes to verify your observations.
+
+### 5. Clean up
 
 ```bash
 ./cleanup.sh
@@ -59,19 +89,4 @@ kind delete cluster --name my-first-cluster
 
 ---
 
-## Files
-
-| File | Purpose |
-|------|---------|
-| `kind-config.yaml` | Cluster definition: 1 control-plane + 2 workers |
-| `commands.md` | Ordered list of commands to practice |
-| `notes.md` | Questions to answer after running the lab |
-| `cleanup.sh` | Deletes the cluster |
-
----
-
-## Rule
-
-You are done with this lab when you can create, inspect, explain, and delete the cluster without looking anything up.
-
-Next lab: `01-pods`
+**Next lab:** `01-pods`

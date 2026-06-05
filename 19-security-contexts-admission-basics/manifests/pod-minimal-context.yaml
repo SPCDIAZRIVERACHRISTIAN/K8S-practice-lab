@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: minimal-context-pod
+  namespace: lab-19-baseline
+spec:
+  containers:
+  - name: app
+    image: nginx:stable
+    securityContext:
+      runAsNonRoot: false    # allowed in baseline, blocked in restricted

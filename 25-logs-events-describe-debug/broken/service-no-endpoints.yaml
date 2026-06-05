@@ -1,0 +1,14 @@
+# Intentionally broken: selector has a typo — 'working-appp' instead of 'working-app'.
+# No pods match this selector so the service has no endpoints.
+apiVersion: v1
+kind: Service
+metadata:
+  name: broken-svc
+  namespace: lab-25-observe
+spec:
+  selector:
+    app: working-appp
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lab-10-team-a
+  labels:
+    team: a
+    env: production
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lab-10-team-b
+  labels:
+    team: b
+    env: staging

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-missing-pvc
+  namespace: lab-28-storage
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    volumeMounts:
+    - name: data
+      mountPath: /data
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: does-not-exist-pvc   # this PVC has not been created
+# Problem: the pod references a PVC that does not exist.
+# The pod stays in ContainerCreating indefinitely.
+# Fix: create the PVC first, then the pod will automatically find it and start.

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-b
+  namespace: speed-32
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-b
+  template:
+    metadata:
+      labels:
+        app: app-b
+    spec:
+      containers:
+      - name: app-b
+        image: nginx:stable
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-b-svc
+  namespace: speed-32
+spec:
+  selector:
+    app: app-bb
+  ports:
+  - port: 80
+    targetPort: 80

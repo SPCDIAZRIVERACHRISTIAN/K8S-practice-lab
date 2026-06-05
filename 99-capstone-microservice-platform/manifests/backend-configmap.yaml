@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: capstone
+data:
+  APP_ENV: "production"
+  SERVICE_NAME: "backend-api"
+  MAX_CONNECTIONS: "100"
+  LOG_LEVEL: "INFO"

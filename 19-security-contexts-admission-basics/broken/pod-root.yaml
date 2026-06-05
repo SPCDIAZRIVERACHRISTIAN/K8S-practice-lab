@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: root-pod
+  namespace: lab-19-security
+spec:
+  containers:
+  - name: app
+    image: nginx:stable
+    # No securityContext — runs as root by default
+    # This violates the 'restricted' Pod Security policy

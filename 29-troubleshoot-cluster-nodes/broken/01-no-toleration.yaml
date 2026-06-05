@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: no-toleration-pod
+  namespace: lab-29-nodes
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+# This pod has no tolerations.
+# Before applying it, add a taint to kind-worker:
+#   kubectl taint node kind-worker dedicated=gpu:NoSchedule
+# With both workers available, the pod goes to kind-worker2.
+# If kind-worker2 is cordoned, the pod is Pending.
+# Fix: add toleration for the taint, or remove the taint.
