@@ -33,12 +33,12 @@ lab-01-pods namespace
 
 **Success criteria:**
 - [X] Create the namespace and apply the pod manifest
-- [ ] Use `kubectl get pods`, `kubectl describe pod`, and `kubectl logs` to inspect it
-- [ ] Exec into the running pod and run a command inside the container
-- [ ] Apply the broken image pod and observe `ImagePullBackOff`
-- [ ] Fix the broken pod by editing the image tag
-- [ ] Delete the working pod and confirm it does not come back
-- [ ] Explain why a deleted pod stays gone without a Deployment
+- [x] Use `kubectl get pods`, `kubectl describe pod`, and `kubectl logs` to inspect it
+- [x] Exec into the running pod and run a command inside the container
+- [x] Apply the broken image pod and observe `ImagePullBackOff`
+- [x] Fix the broken pod by editing the image tag
+- [x] Delete the working pod and confirm it does not come back
+- [x] Explain why a deleted pod stays gone without a Deployment
 
 **Estimated difficulty:** Beginner
 
