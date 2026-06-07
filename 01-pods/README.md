@@ -32,7 +32,7 @@ lab-01-pods namespace
 | `cleanup.sh` | Deletes the lab namespace |
 
 **Success criteria:**
-- [ ] Create the namespace and apply the pod manifest
+- [X] Create the namespace and apply the pod manifest
 - [ ] Use `kubectl get pods`, `kubectl describe pod`, and `kubectl logs` to inspect it
 - [ ] Exec into the running pod and run a command inside the container
 - [ ] Apply the broken image pod and observe `ImagePullBackOff`

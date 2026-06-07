@@ -8,11 +8,15 @@ Answer each question after running the lab. Write in your own words.
 
 > What did you think a pod was before this lab? How did your mental model change?
 
+I did not have any expectations of what a pod was I didnt understand them until I started working with it 
+
 ---
 
 ## What Actually Happened
 
 > Describe the pod lifecycle you observed. What states did it move through?
+
+it first went to ContainerCreate or something along those lines and then ContainerReady 
 
 ---
 
@@ -20,11 +24,27 @@ Answer each question after running the lab. Write in your own words.
 
 > List the commands you ran. For each one, write what object or resource it touched.
 
+kubectl create namespace <namespace> - this was to create a namespace
+
+kubectl apply -f <manifest file> - for making the pod 
+
+kubectl get pods -n <namespace> - to see available pods
+
+kubectl describe pod <pod name> - to see things like events, node, ip, containers and conditions.
+
+kubectl logs nginx-pod -n lab-01-pods - to see logs inside the pod 
+
+kubectl exec -it nginx-pod -n lab-01-pods -- /bin/bash - To ssh in to the container 
+
+kubectl port-forward pod/nginx-pod 8080:80 -n lab-01-pods - to see app from machine.
+
 ---
 
 ## Objects or Resources I Touched
 
 > What Kubernetes objects did you create or modify in this lab?
+
+one cluster and a pod 
 
 ---
 
@@ -32,15 +52,15 @@ Answer each question after running the lab. Write in your own words.
 
 **What does `kubectl describe pod` show that `kubectl get pod` does not?**
 
-> Write your answer here.
+> describe gives you a detailed hashmap of important info get is really more summarized.
 
 **What is in the `Events` section of a pod describe output?**
 
-> Write your answer here.
+> important process triggered like worker processes and errors.
 
 **Where do pod logs come from?**
 
-> Write your answer here.
+> the containers its running.
 
 ---
 
@@ -48,15 +68,16 @@ Answer each question after running the lab. Write in your own words.
 
 **What error appeared when you applied the bad image pod?**
 
-> Write your answer here.
+> ImagePullBackOff
 
 **What does `ImagePullBackOff` mean?**
 
-> Write your answer here.
+> Kubernetes status indicating that a container failed to start because the kubelet could not pull the required container image from the registry.
 
 **What is the difference between `ErrImagePull` and `ImagePullBackOff`?**
 
-> Write your answer here.
+> ErrImagePull is the initial error state that occurs the first time the kubelet fails to pull the image from the registry. 
+ImagePullBackOff is the subsequent status that appears after one or more failed attempts, indicating that Kubernetes is waiting with increasing delays (exponential backoff, up to 5 minutes) before retrying the pull.
 
 ---
 
@@ -64,15 +85,15 @@ Answer each question after running the lab. Write in your own words.
 
 **What happened after you deleted the nginx-pod?**
 
-> Write your answer here.
+> dumb question
 
 **Why did it not come back?**
 
-> Write your answer here.
+> to dumb to answer.
 
 **What Kubernetes object would you need to add to make a pod self-heal after deletion?**
 
-> Write your answer here.
+> N/A
 
 ---
 

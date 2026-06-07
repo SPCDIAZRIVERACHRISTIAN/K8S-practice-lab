@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx:doesnotexist
+    image: nginx:stable 
     ports:
     - containerPort: 80
